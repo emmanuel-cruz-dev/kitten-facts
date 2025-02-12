@@ -2,7 +2,17 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  background-color: #e0e0e0;
   /* border: 1px solid red; */
+}
+
+main{
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
 }
 
 .card__container{
