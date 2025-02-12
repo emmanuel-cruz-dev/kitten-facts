@@ -50,7 +50,7 @@ const App = () => {
         </figure>
         <aside className="card__info">
           {fact && <p>{fact}</p>}
-          <button onClick={handleClick}>New Fact</button>
+          <button onClick={handleClick}>Get new Fact</button>
         </aside>
       </article>
     </main>
