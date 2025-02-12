@@ -11,7 +11,7 @@ const App = () => {
 
   // Recuperando cita al cargar la página
   useEffect(() => {
-    getRandomFact().then(setFact);
+    getRandomFact().then((newFact) => setFact(newFact));
   }, []);
 
   // Recuperando imagen cada vez que tenemos nueva cita
