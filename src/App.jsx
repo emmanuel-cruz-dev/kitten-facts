@@ -10,14 +10,9 @@ const App = () => {
   // const [update, setUpdate] = useState(false);
 
   // Recuperando cita al cargar la página
-  // useEffect(() => {
-  //   fetch(CAT_ENDPOINT_RANDOM_FACT)
-  //     .then((res) => res.json())
-  //     .then((data) => {
-  //       const { fact } = data;
-  //       setFact(fact);
-  //     });
-  // }, []);
+  useEffect(() => {
+    getRandomFact().then(setFact);
+  }, []);
 
   // Recuperando imagen cada vez que tenemos nueva cita
   useEffect(() => {
