@@ -5,7 +5,7 @@ const CAT_ENDPOINT_RANDOM_FACT = "https://catfact.ninja/fact";
 
 const App = () => {
   const [fact, setFact] = useState();
-  const [catImg, setCatImg] = useState(null);
+  const [imageUrl, setImageUrl] = useState(null);
   const [update, setUpdate] = useState(false);
 
   useEffect(() => {
@@ -21,7 +21,7 @@ const App = () => {
           `https://cataas.com/cat/says/${firstWord}?fontSize=50&fontColor=red`
         ).then((data) => {
           const { url } = data;
-          setCatImg(url);
+          setImageUrl(url);
         });
       });
   }, [update]);
@@ -35,7 +35,7 @@ const App = () => {
       <h1>Kitten Facts App</h1>
       <div className="card__container">
         <figure className="card__image__container">
-          {catImg && <img src={catImg} alt="Cat picture" />}
+          {imageUrl && <img src={imageUrl} alt="Cat picture" />}
         </figure>
         <div className="card__info">
           {fact && <p>{fact}</p>}
