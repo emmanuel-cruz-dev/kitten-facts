@@ -7,7 +7,6 @@ const App = () => {
   const [fact, setFact] = useState();
   const [imageUrl, setImageUrl] = useState(null);
   const [update, setUpdate] = useState(false);
-  const [firstWord, setFirstWord] = useState();
 
   // Recuperando cita al cargar la página
   useEffect(() => {
@@ -16,20 +15,21 @@ const App = () => {
       .then((data) => {
         const { fact } = data;
         setFact(fact);
-        const word = fact.split(" ", 3).join(" ");
-        setFirstWord(word);
       });
   }, [update]);
 
+  // Recuperando imagen cada vez que tenemos nueva cita
   useEffect(() => {
+    if (!fact) return;
     // const firstWord = fact.split(" ").slice(0, 3).join(" ");
+    const firstWord = fact.split(" ", 3).join(" ");
     fetch(
       `https://cataas.com/cat/says/${firstWord}?fontSize=50&fontColor=red`
     ).then((response) => {
       const { url } = response;
       setImageUrl(url);
     });
-  }, [firstWord]);
+  }, [fact]);
 
   const handleClick = () => {
     setUpdate(!update);
