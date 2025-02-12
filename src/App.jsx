@@ -1,25 +1,27 @@
 import React, { useEffect, useState } from "react";
 
+const CAT_ENDPOINT_RANDOM_FACT = "https://catfact.ninja/fact";
+// const CAT_ENDPOINT_IMAGE_URL = `https://cataas.com/cat/says/${word}?fontSize=50&fontColor=red`;
+
 const App = () => {
   const [fact, setFact] = useState();
   const [catImg, setCatImg] = useState(null);
   const [update, setUpdate] = useState(false);
-  const [word, setWord] = useState(null);
 
   useEffect(() => {
-    fetch("https://catfact.ninja/fact")
+    fetch(CAT_ENDPOINT_RANDOM_FACT)
       .then((res) => res.json())
       .then((data) => {
-        setFact(data.fact);
-        setWord(data.fact.split(" ")[0]);
+        const { fact } = data;
+        setFact(fact);
+
+        const firstWord = fact.split(" ").slice(0, 3).join(" ");
+        // const firstWord = fact.split(" ", 3);
+        fetch(
+          `https://cataas.com/cat/says/${firstWord}?fontSize=50&fontColor=red`
+        ).then((data) => setCatImg(data.url));
       });
   }, [update]);
-
-  useEffect(() => {
-    fetch(`https://cataas.com/cat/says/${word}?fontSize=50&fontColor=red`).then(
-      (data) => setCatImg(data.url)
-    );
-  }, [fact]);
 
   const handleClick = () => {
     setUpdate(!update);
@@ -33,7 +35,7 @@ const App = () => {
           <img src={catImg} alt="Cat picture" />
         </figure>
         <div className="card__info">
-          <p>{fact}</p>
+          {fact && <p>{fact}</p>}
           <button onClick={handleClick}>New Fact</button>
         </div>
       </div>

@@ -20,6 +20,7 @@
 
 .card__image__container{
   max-width: 50%;
+  min-width: 300px;
 }
 
 .card__image__container img{
