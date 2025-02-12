@@ -23,7 +23,9 @@ const App = () => {
     <main>
       <h1>Kitten Facts App</h1>
       <div className="card__container">
-        <img src={catImg} alt="Cat picture" width={400} />
+        <figure className="card__image__container">
+          <img src={catImg} alt="Cat picture" />
+        </figure>
         <p>{fact}</p>
         <button onClick={handleClick}>New Fact</button>
       </div>
