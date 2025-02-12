@@ -11,7 +11,7 @@ const App = () => {
       .then((res) => res.json())
       .then((data) => {
         setFact(data.fact);
-        setWord(data.fact.slice(0, 5));
+        setWord(data.fact.split(" ")[0]);
       });
   }, [update]);
 
