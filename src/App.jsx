@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 
 const App = () => {
-  const [fact, setFact] = useState("Cat fact whatever");
+  const [fact, setFact] = useState();
   const [catImg, setCatImg] = useState(null);
   const [update, setUpdate] = useState(false);
   const [word, setWord] = useState(null);
