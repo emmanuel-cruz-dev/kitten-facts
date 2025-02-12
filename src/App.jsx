@@ -32,8 +32,10 @@ const App = () => {
         <figure className="card__image__container">
           <img src={catImg} alt="Cat picture" />
         </figure>
-        <p>{fact}</p>
-        <button onClick={handleClick}>New Fact</button>
+        <div className="card__info">
+          <p>{fact}</p>
+          <button onClick={handleClick}>New Fact</button>
+        </div>
       </div>
     </main>
   );
