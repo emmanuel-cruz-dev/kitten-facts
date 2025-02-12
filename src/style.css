@@ -2,8 +2,12 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  background-color: #e0e0e0;
+  font-family: system-ui, -apple-system, 'Helvetica Neue', sans-serif;
   /* border: 1px solid red; */
+}
+
+html{
+  background-color: #e0e0e0;
 }
 
 main{
@@ -18,9 +22,9 @@ main{
 .card__container{
   margin-top: 1rem;
   margin-left: 1rem;
-  background-color: rgba(234, 234, 234, 0.6);
+  background-color: #fff;
   color: #000;
-  width: 72%;
+  width: 64%;
   max-height: 80vh;
   border-radius: 8px;
   display: flex;
@@ -29,8 +33,8 @@ main{
 }
 
 .card__image__container{
-  max-width: 50%;
-  min-width: 300px;
+  max-width: 320px;
+  height: auto;
 }
 
 .card__image__container img{
