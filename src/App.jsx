@@ -19,7 +19,10 @@ const App = () => {
         const firstWord = fact.split(" ", 3).join(" ");
         fetch(
           `https://cataas.com/cat/says/${firstWord}?fontSize=50&fontColor=red`
-        ).then((data) => setCatImg(data.url));
+        ).then((data) => {
+          const { url } = data;
+          setCatImg(url);
+        });
       });
   }, [update]);
 
