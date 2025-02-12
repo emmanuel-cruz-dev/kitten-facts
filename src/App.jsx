@@ -7,24 +7,29 @@ const App = () => {
   const [fact, setFact] = useState();
   const [imageUrl, setImageUrl] = useState(null);
   const [update, setUpdate] = useState(false);
+  const [firstWord, setFirstWord] = useState();
 
+  // Recuperando cita al cargar la página
   useEffect(() => {
     fetch(CAT_ENDPOINT_RANDOM_FACT)
       .then((res) => res.json())
       .then((data) => {
         const { fact } = data;
         setFact(fact);
-
-        // const firstWord = fact.split(" ").slice(0, 3).join(" ");
-        const firstWord = fact.split(" ", 3).join(" ");
-        fetch(
-          `https://cataas.com/cat/says/${firstWord}?fontSize=50&fontColor=red`
-        ).then((response) => {
-          const { url } = response;
-          setImageUrl(url);
-        });
+        const word = fact.split(" ", 3).join(" ");
+        setFirstWord(word);
       });
   }, [update]);
+
+  useEffect(() => {
+    // const firstWord = fact.split(" ").slice(0, 3).join(" ");
+    fetch(
+      `https://cataas.com/cat/says/${firstWord}?fontSize=50&fontColor=red`
+    ).then((response) => {
+      const { url } = response;
+      setImageUrl(url);
+    });
+  }, [firstWord]);
 
   const handleClick = () => {
     setUpdate(!update);
