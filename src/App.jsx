@@ -4,16 +4,22 @@ const App = () => {
   const [fact, setFact] = useState("Cat fact whatever");
   const [catImg, setCatImg] = useState(null);
   const [update, setUpdate] = useState(false);
+  const [word, setWord] = useState(null);
 
   useEffect(() => {
     fetch("https://catfact.ninja/fact")
       .then((res) => res.json())
-      .then((data) => setFact(data.fact));
+      .then((data) => {
+        setFact(data.fact);
+        setWord(data.fact.slice(0, 5));
+      });
   }, [update]);
 
   useEffect(() => {
-    fetch("https://cataas.com/cat").then((data) => setCatImg(data.url));
-  }, [update]);
+    fetch(`https://cataas.com/cat/says/${word}?fontSize=50&fontColor=red`).then(
+      (data) => setCatImg(data.url)
+    );
+  }, [fact]);
 
   const handleClick = () => {
     setUpdate(!update);
