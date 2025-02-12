@@ -19,8 +19,8 @@ const App = () => {
         const firstWord = fact.split(" ", 3).join(" ");
         fetch(
           `https://cataas.com/cat/says/${firstWord}?fontSize=50&fontColor=red`
-        ).then((data) => {
-          const { url } = data;
+        ).then((response) => {
+          const { url } = response;
           setImageUrl(url);
         });
       });
@@ -33,15 +33,21 @@ const App = () => {
   return (
     <main>
       <h1>Kitten Facts App</h1>
-      <div className="card__container">
+      <article className="card__container">
         <figure className="card__image__container">
-          {imageUrl && <img src={imageUrl} alt="Cat picture" />}
+          {imageUrl && (
+            <img
+              src={imageUrl}
+              alt={`Image extracted from three words for ${fact}`}
+              title={`Image extracted from three words for ${fact}`}
+            />
+          )}
         </figure>
-        <div className="card__info">
+        <aside className="card__info">
           {fact && <p>{fact}</p>}
           <button onClick={handleClick}>New Fact</button>
-        </div>
-      </div>
+        </aside>
+      </article>
     </main>
   );
 };
