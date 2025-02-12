@@ -43,6 +43,7 @@ main{
 }
 
 .card__info{
+  max-width: 320px;
   padding: 1rem;
   display: flex;
   flex-direction: column;
@@ -63,7 +64,8 @@ main{
 
   .card__container{
     flex-direction: row;
-    width: 64%;
+    width: fit-content;
+    max-width: 72%;
     max-height: 80vh;
   }
 
