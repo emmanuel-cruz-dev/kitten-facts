@@ -1,22 +1,23 @@
 import React, { useEffect, useState } from "react";
+import { getRandomFact } from "./services/facts";
 
-const CAT_ENDPOINT_RANDOM_FACT = "https://catfact.ninja/fact";
+// const CAT_ENDPOINT_RANDOM_FACT = "https://catfact.ninja/fact";
 // const CAT_ENDPOINT_IMAGE_URL = `https://cataas.com/cat/says/${word}?fontSize=50&fontColor=red`;
 
 const App = () => {
   const [fact, setFact] = useState();
   const [imageUrl, setImageUrl] = useState(null);
-  const [update, setUpdate] = useState(false);
+  // const [update, setUpdate] = useState(false);
 
   // Recuperando cita al cargar la página
-  useEffect(() => {
-    fetch(CAT_ENDPOINT_RANDOM_FACT)
-      .then((res) => res.json())
-      .then((data) => {
-        const { fact } = data;
-        setFact(fact);
-      });
-  }, [update]);
+  // useEffect(() => {
+  //   fetch(CAT_ENDPOINT_RANDOM_FACT)
+  //     .then((res) => res.json())
+  //     .then((data) => {
+  //       const { fact } = data;
+  //       setFact(fact);
+  //     });
+  // }, []);
 
   // Recuperando imagen cada vez que tenemos nueva cita
   useEffect(() => {
@@ -31,8 +32,9 @@ const App = () => {
     });
   }, [fact]);
 
-  const handleClick = () => {
-    setUpdate(!update);
+  const handleClick = async () => {
+    const newFact = await getRandomFact(setFact);
+    setFact(newFact);
   };
 
   return (
