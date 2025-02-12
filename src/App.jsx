@@ -15,8 +15,8 @@ const App = () => {
         const { fact } = data;
         setFact(fact);
 
-        const firstWord = fact.split(" ").slice(0, 3).join(" ");
-        // const firstWord = fact.split(" ", 3);
+        // const firstWord = fact.split(" ").slice(0, 3).join(" ");
+        const firstWord = fact.split(" ", 3).join(" ");
         fetch(
           `https://cataas.com/cat/says/${firstWord}?fontSize=50&fontColor=red`
         ).then((data) => setCatImg(data.url));
@@ -32,7 +32,7 @@ const App = () => {
       <h1>Kitten Facts App</h1>
       <div className="card__container">
         <figure className="card__image__container">
-          <img src={catImg} alt="Cat picture" />
+          {catImg && <img src={catImg} alt="Cat picture" />}
         </figure>
         <div className="card__info">
           {fact && <p>{fact}</p>}
