@@ -7,14 +7,17 @@ import { useCatImage } from "./hooks/useCatImage";
 const useCatFact = () => {
   const [fact, setFact] = useState();
 
-  const getFactAndUpdateReactState = () => {
+  const getRandomFactAndUpdateState = () => {
     getRandomFact().then((newFact) => setFact(newFact));
   };
 
-  useEffect(() => {}, []);
+  useEffect(getRandomFactAndUpdateState, []);
+
+  return { fact, getRandomFactAndUpdateState };
 };
 
 const App = () => {
+  const { fact, getRandomFactAndUpdateState } = useCatFact();
   const { imageUrl } = useCatImage({ fact });
 
   // Recuperando cita al cargar la página
@@ -22,6 +25,8 @@ const App = () => {
   const handleClick = async () => {
     // const newFact = await getRandomFact(setFact);
     // setFact(newFact);
+
+    getRandomFactAndUpdateState();
   };
 
   return (
