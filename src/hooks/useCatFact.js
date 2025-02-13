@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { getRandomFact } from "../services/facts";
 
-export const useCatFact = () => {
+export function useCatFact() {
   const [fact, setFact] = useState();
 
   const refreshFact = () => {
@@ -11,4 +11,4 @@ export const useCatFact = () => {
   useEffect(refreshFact, []);
 
   return { fact, refreshFact };
-};
+}
