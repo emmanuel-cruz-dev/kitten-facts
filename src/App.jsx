@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { getRandomFact } from "./services/facts";
+import { getImageUrl } from "./services/imageUrl";
 
-// const CAT_ENDPOINT_RANDOM_FACT = "https://catfact.ninja/fact";
 // const CAT_ENDPOINT_IMAGE_URL = `https://cataas.com/cat/says/${word}?fontSize=50&fontColor=red`;
 
 const App = () => {
@@ -19,12 +19,14 @@ const App = () => {
     if (!fact) return;
     // const firstWord = fact.split(" ").slice(0, 3).join(" ");
     const firstWord = fact.split(" ", 3).join(" ");
-    fetch(
-      `https://cataas.com/cat/says/${firstWord}?fontSize=50&fontColor=red`
-    ).then((response) => {
-      const { url } = response;
-      setImageUrl(url);
-    });
+    // fetch(
+    //   `https://cataas.com/cat/says/${firstWord}?fontSize=50&fontColor=red`
+    // ).then((response) => {
+    //   const { url } = response;
+    //   setImageUrl(url);
+    // });
+
+    getImageUrl(firstWord).then((imageUrl) => setImageUrl(imageUrl));
   }, [fact]);
 
   const handleClick = async () => {
