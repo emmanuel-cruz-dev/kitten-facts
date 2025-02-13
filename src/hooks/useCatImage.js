@@ -5,7 +5,6 @@ export function useCatImage({ fact }) {
 
   useEffect(() => {
     if (!fact) return;
-    // const firstWord = fact.split(" ").slice(0, 3).join(" ");
     const threeFirstWord = fact.split(" ", 3).join(" ");
 
     fetch(

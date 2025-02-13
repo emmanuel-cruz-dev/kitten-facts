@@ -1,5 +1,6 @@
 import { useCatImage } from "./hooks/useCatImage";
 import { useCatFact } from "./hooks/useCatFact";
+import { Other } from "./components/Other";
 
 const App = () => {
   const { fact, refreshFact } = useCatFact();
@@ -27,6 +28,7 @@ const App = () => {
           <button onClick={handleClick}>Get new Fact</button>
         </aside>
       </article>
+      <Other />
     </main>
   );
 };
