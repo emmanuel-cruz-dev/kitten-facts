@@ -6,10 +6,10 @@ export function useCatImage({ fact }) {
   useEffect(() => {
     if (!fact) return;
     // const firstWord = fact.split(" ").slice(0, 3).join(" ");
-    const firstWord = fact.split(" ", 3).join(" ");
+    const threeFirstWord = fact.split(" ", 3).join(" ");
 
     fetch(
-      `https://cataas.com/cat/says/${firstWord}?fontSize=50&fontColor=red`
+      `https://cataas.com/cat/says/${threeFirstWord}?fontSize=50&fontColor=red`
     ).then((res) => {
       const { url } = res;
       setImageUrl(url);

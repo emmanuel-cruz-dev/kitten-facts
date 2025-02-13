@@ -1,21 +1,27 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { getRandomFact } from "./services/facts";
 import { useCatImage } from "./hooks/useCatImage";
 
 // const CAT_ENDPOINT_IMAGE_URL = `https://cataas.com/cat/says/${word}?fontSize=50&fontColor=red`;
 
-const App = () => {
+const useCatFact = () => {
   const [fact, setFact] = useState();
+
+  const getFactAndUpdateReactState = () => {
+    getRandomFact().then((newFact) => setFact(newFact));
+  };
+
+  useEffect(() => {}, []);
+};
+
+const App = () => {
   const { imageUrl } = useCatImage({ fact });
 
   // Recuperando cita al cargar la página
-  useEffect(() => {
-    getRandomFact().then((newFact) => setFact(newFact));
-  }, []);
 
   const handleClick = async () => {
-    const newFact = await getRandomFact(setFact);
-    setFact(newFact);
+    // const newFact = await getRandomFact(setFact);
+    // setFact(newFact);
   };
 
   return (
