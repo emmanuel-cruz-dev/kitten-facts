@@ -1,27 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { getRandomFact } from "./services/facts";
-// import { getImageUrl } from "./services/imageUrl";
+import { useCatImage } from "./hooks/useCatImage";
 
 // const CAT_ENDPOINT_IMAGE_URL = `https://cataas.com/cat/says/${word}?fontSize=50&fontColor=red`;
-
-function useCatImage({ fact }) {
-  const [imageUrl, setImageUrl] = useState(null);
-
-  useEffect(() => {
-    if (!fact) return;
-    // const firstWord = fact.split(" ").slice(0, 3).join(" ");
-    const firstWord = fact.split(" ", 3).join(" ");
-
-    fetch(
-      `https://cataas.com/cat/says/${firstWord}?fontSize=50&fontColor=red`
-    ).then((res) => {
-      const { url } = res;
-      setImageUrl(url);
-    });
-  }, [fact]);
-
-  return { imageUrl };
-}
 
 const App = () => {
   const [fact, setFact] = useState();
