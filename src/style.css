@@ -24,7 +24,7 @@ main{
   margin-left: 1rem;
   background-color: #fff;
   color: #000;
-  border-radius: 8px;
+  border-radius: 4px;
   display: flex;
   flex-direction: column;
   overflow: hidden;
