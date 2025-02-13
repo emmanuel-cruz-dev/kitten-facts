@@ -1,20 +1,19 @@
-import { useEffect, useState } from "react";
-import { getRandomFact } from "./services/facts";
 import { useCatImage } from "./hooks/useCatImage";
+import { useCatFact } from "./hooks/useCatFact";
 
 // const CAT_ENDPOINT_IMAGE_URL = `https://cataas.com/cat/says/${word}?fontSize=50&fontColor=red`;
 
-const useCatFact = () => {
-  const [fact, setFact] = useState();
+// const useCatFact = () => {
+//   const [fact, setFact] = useState();
 
-  const refreshFact = () => {
-    getRandomFact().then((newFact) => setFact(newFact));
-  };
+//   const refreshFact = () => {
+//     getRandomFact().then((newFact) => setFact(newFact));
+//   };
 
-  useEffect(refreshFact, []);
+//   useEffect(refreshFact, []);
 
-  return { fact, refreshFact };
-};
+//   return { fact, refreshFact };
+// };
 
 const App = () => {
   const { fact, refreshFact } = useCatFact();
