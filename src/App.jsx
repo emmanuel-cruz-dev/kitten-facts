@@ -1,33 +1,36 @@
 import React, { useEffect, useState } from "react";
 import { getRandomFact } from "./services/facts";
-import { getImageUrl } from "./services/imageUrl";
+// import { getImageUrl } from "./services/imageUrl";
 
 // const CAT_ENDPOINT_IMAGE_URL = `https://cataas.com/cat/says/${word}?fontSize=50&fontColor=red`;
 
+function useCatImage({ fact }) {
+  const [imageUrl, setImageUrl] = useState(null);
+
+  useEffect(() => {
+    if (!fact) return;
+    // const firstWord = fact.split(" ").slice(0, 3).join(" ");
+    const firstWord = fact.split(" ", 3).join(" ");
+
+    fetch(
+      `https://cataas.com/cat/says/${firstWord}?fontSize=50&fontColor=red`
+    ).then((res) => {
+      const { url } = res;
+      setImageUrl(url);
+    });
+  }, [fact]);
+
+  return { imageUrl };
+}
+
 const App = () => {
   const [fact, setFact] = useState();
-  const [imageUrl, setImageUrl] = useState(null);
-  // const [update, setUpdate] = useState(false);
+  const { imageUrl } = useCatImage({ fact });
 
   // Recuperando cita al cargar la página
   useEffect(() => {
     getRandomFact().then((newFact) => setFact(newFact));
   }, []);
-
-  // Recuperando imagen cada vez que tenemos nueva cita
-  useEffect(() => {
-    if (!fact) return;
-    // const firstWord = fact.split(" ").slice(0, 3).join(" ");
-    const firstWord = fact.split(" ", 3).join(" ");
-    // fetch(
-    //   `https://cataas.com/cat/says/${firstWord}?fontSize=50&fontColor=red`
-    // ).then((response) => {
-    //   const { url } = response;
-    //   setImageUrl(url);
-    // });
-
-    getImageUrl(firstWord).then((imageUrl) => setImageUrl(imageUrl));
-  }, [fact]);
 
   const handleClick = async () => {
     const newFact = await getRandomFact(setFact);
